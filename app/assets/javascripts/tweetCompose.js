@@ -37,7 +37,7 @@ $.TweetCompose.prototype = {
   },
 
   clearInput: function () {
-    this.$el.children().filter(":input").val("");
+    this.$el.find("textarea").val("");
     this.$el.find("div.mentioned-users").empty();
   },
 

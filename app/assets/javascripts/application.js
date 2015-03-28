@@ -16,4 +16,5 @@
 //= require followToggle
 //= require usersSearch
 //= require tweetCompose
+//= require infiniteTweets
 //= require_tree .
