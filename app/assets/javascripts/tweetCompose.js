@@ -3,6 +3,8 @@ $.TweetCompose = function (el) {
   this.$el.on("submit", this.submit.bind(this));
   this.$feed = $(this.$el.data("tweets-ul"));
   this.$el.find("textarea").on("input", this.updateCharsLeft.bind(this));
+  this.$el.find("a.add-mentioned-user").on("click", this.addMentionedUser.bind(this));
+  this.$el.on("click", "a.remove-mentioned-user", this.removeMentionedUser.bind(this));
 };
 
 $.TweetCompose.prototype = {
@@ -36,11 +38,21 @@ $.TweetCompose.prototype = {
 
   clearInput: function () {
     this.$el.children().filter(":input").val("");
+    this.$el.find("div.mentioned-users").empty();
   },
 
   updateCharsLeft: function (event) {
     var currentChars = event.currentTarget.value;
     this.$el.find("strong").html("Characters Left: " + (140 - currentChars.length));
+  },
+
+  addMentionedUser: function () {
+    var script = $(this.$el.find("script")).html();
+    this.$el.find("div.mentioned-users").append(script);
+  },
+
+  removeMentionedUser: function (event) {
+    event.currentTarget.parentElement.remove();
   }
 };
 
